@@ -10238,7 +10238,7 @@ a.text-dark:hover, a.text-dark:focus {
 /*AEROBLACK ABAIXO | AEROBLACK BELLOW*/
 
 .bg-aeroblack {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   border: 0px !important;
   color:white;
 }
@@ -10254,7 +10254,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .nav-link.active.bg-aeroblack{
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   border: 0px !important;
   color:white;
 }
@@ -10347,7 +10347,7 @@ textarea.bg-aeroblack:focus{
 }
 
 .bg-aeroblack.table thead th {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   border:0px;
 }
 

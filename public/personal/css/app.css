@@ -15,9 +15,13 @@
 }
 }
 
+.bg-aeroblack {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
 body {
 
-  background-image: url("../../../public/images/assets/background1.jpg") ; 
+  background-image: url("../../../public/images/assets/background4.jpg") ; 
 
   background-color: #800000;
   background-color: white;

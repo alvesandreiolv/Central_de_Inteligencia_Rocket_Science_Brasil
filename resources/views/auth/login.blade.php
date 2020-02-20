@@ -6,7 +6,9 @@
 
 <div class="card bg-aeroblack" style="width: 100%; max-width: 400px;">
 
-    <div class="card-header">{{ __('Faça o login:') }}</div>
+<a href="https://br.wordpress.org/"><img src="{{asset('public/images/assets/centrallogo.png')}}" width="180" height="180" style="margin-top: 10px;"></a>
+
+    <div class="card-header" style="padding-top: 0px;">Central de Inteligência Rocket Science Brasil</div>
 
     <div class="card-body ">
 
