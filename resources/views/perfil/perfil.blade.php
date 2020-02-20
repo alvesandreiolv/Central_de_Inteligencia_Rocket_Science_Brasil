@@ -2,6 +2,6 @@
 
 @section('contentdashboard')
 
-aqui vai usuários
+aaaaaaaaa
 
 @endsection

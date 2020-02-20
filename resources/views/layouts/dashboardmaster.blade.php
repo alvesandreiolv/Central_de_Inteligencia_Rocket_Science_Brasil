@@ -33,7 +33,7 @@
 
 			<img src="{{asset('public/images/assets/centrallogo.png')}}" width="60" height="60" style="float: left; margin-right: 10px;" class="d-inline-block align-top">
 
-			<div class="site-branding-text"><h1 class="site-title h3 mb-0"><a href="https://rocketsciencebr.com/" rel="home" class="navbar-brand mb-0">Central de Inteligência RSB</a></h1><span class="site-description">Comunidade brasileira de entusiastas em Astronomia e Astronáutica.</span></div>
+			<div class="site-branding-text"><h1 class="site-title h3 mb-0"><a href="https://rocketsciencebr.com/" rel="home" class="navbar-brand mb-0">Central de Inteligência Rocket Science Brasil</a></h1><span class="site-description">Comunidade brasileira de entusiastas em Astronomia e Astronáutica.</span></div>
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -56,7 +56,9 @@
 
 				@auth
 
-
+				<li class="nav-item">
+					<a class="nav-link <?php if (Route::current()->uri() === 'inicio') { echo 'active'; } ?>" href="{{ route('inicio') }}"><i class="fa fa-home" aria-hidden="true"></i> Início</a>
+				</li>
 
 				@else
 				<li class="nav-item">
@@ -136,11 +138,13 @@
 
 						<div id="menulinks" class="nav nav-pills collapse">
 
-							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if (Route::current()->uri() === 'inicio') { echo 'active'; } ?>" href="{{ url('') }}"><i class="fa fa-home" aria-hidden="true"></i> Início</a>
+							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if (Route::current()->uri() === 'inicio') { echo 'active'; } ?>" href="{{ url('inicio') }}"><i class="fa fa-home" aria-hidden="true"></i> Início</a>
 
 							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if (Route::current()->uri() === 'logs') { echo 'active'; } ?>" href="{{ url('logs') }}"><i class="fa fa-file-text-o" aria-hidden="true"></i> Logs</a>
 
-							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if (Route::current()->uri() === 'administrador') { echo 'active'; } ?>" href="{{ url('administrador') }}"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a>
+							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ( (Route::current()->uri() === 'administrador') || (Route::current()->uri() === 'membros') || (Route::current()->uri() === 'membros/ver') ) { echo 'active'; } ?>" href="{{ url('administrador') }}"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a>
+
+							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if (Route::current()->uri() === 'perfil') { echo 'active'; } ?>" href="{{ url('perfil') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Meu Perfil</a>
 
 							<a style="width: 100%;" class="nav-link text-white bg-aeroblack" href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>
 								{{ __('Logout') }}
@@ -165,8 +169,7 @@
 					<ul class="nav nav-tabs ">
 
 						<?php
-
-
+//GERAL DASHBOARD ABAIXO
 
 						if (Route::current()->uri() === '/') {
 							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-home" aria-hidden="true"></i> Faça parte</a></li>';
@@ -176,25 +179,7 @@
 							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-home" aria-hidden="true"></i> Início</a></li>';
 						}
 
-//ADMINISTRADOR ABAIXO
-
-						if (Route::current()->uri() === 'administrador') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-star" aria-hidden="true"></i> Administrador</a></li>';
-						}
-						if (Route::current()->uri() === 'administrador/cadastrarconcurso') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-check-square-o" aria-hidden="true"></i> Administrador</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus"></i> Cadastrar concurso</a></li>';
-						} 
-						if (Route::current()->uri() === 'administrador/editarconcurso') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-check-square-o" aria-hidden="true"></i> Administrador</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i> Editar concurso</a></li>';
-						} 
-						if (Route::current()->uri() === 'administrador/verconcurso') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-check-square-o" aria-hidden="true"></i> Administrador</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver concurso</a></li>';
-						} 
-
-//EMPREGOS ABAIXO
+//MODELO ABAIXO
 
 						if (Route::current()->uri() === 'empregos') {
 							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-suitcase" aria-hidden="true"></i> Empregos</a></li>';
@@ -212,142 +197,46 @@
 							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i> Editar aplicação</a></li>';
 						} 
 
-//MÚSICAS ABAIXO
+//ADMINISTRADOR ABAIXO
 
-						if (Route::current()->uri() === 'musicas') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-music" aria-hidden="true"></i> Músicas</a></li>';
+						if (Route::current()->uri() === 'administrador') {
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-star" aria-hidden="true"></i> Administrador</a></li>';
 						}
-						if (Route::current()->uri() === 'musicas/cadastrarmusica') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/musicas").'"><i class="fa fa-music" aria-hidden="true"></i> Músicas</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus"></i> Cadastrar música</a></li>';
+						if (Route::current()->uri() === 'membros') {
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a></li>';
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-user-circle-o" aria-hidden="true"></i> Membros</a></li>';
 						} 
-						if (Route::current()->uri() === 'musicas/editarmusica') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/musicas").'"><i class="fa fa-music" aria-hidden="true"></i> Músicas</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i> Editar música</a></li>';
+						if (Route::current()->uri() === 'membros/ver') {
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a></li>';
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye" aria-hidden="true"></i> Ver membro</a></li>';
 						} 
-						if (Route::current()->uri() === 'musicas/editarmensagem') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/musicas").'"><i class="fa fa-music" aria-hidden="true"></i> Músicas</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i> Editar mensagem</a></li>';
+						if (Route::current()->uri() === 'membros/editar') {
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a></li>';
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil" aria-hidden="true"></i> Editar membro</a></li>';
+						} 
+						if (Route::current()->uri() === 'administrador/verconcurso') {
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-check-square-o" aria-hidden="true"></i> Administrador</a></li>';
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver concurso</a></li>';
 						} 
 
-//ESTUDOS ABAIXO
+//MODELO ABAIXO
 
-						if (Route::current()->uri() === 'estudos') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-book" aria-hidden="true"></i> Estudos</a></li>';
+						if (Route::current()->uri() === 'empregos') {
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-suitcase" aria-hidden="true"></i> Empregos</a></li>';
 						}
-						if (Route::current()->uri() === 'estudos/cadastrarprova') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/estudos").'"><i class="fa fa-book" aria-hidden="true"></i> Estudos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus"></i> Cadastrar prova</a></li>';
+						if (Route::current()->uri() === 'empregos/addaplicacao') {
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/empregos").'"><i class="fa fa-suitcase" aria-hidden="true"></i> Empregos</a></li>';
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus"></i> Adicionar aplicação</a></li>';
 						} 
-						if (Route::current()->uri() === 'estudos/editarprova') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/estudos").'"><i class="fa fa-book" aria-hidden="true"></i> Estudos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i> Editar prova</a></li>';
-						} 
-						if (Route::current()->uri() === 'estudos/verprova') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/estudos").'"><i class="fa fa-book" aria-hidden="true"></i> Estudos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver prova</a></li>';
-						} 
-						if (Route::current()->uri() === 'estudos/cadastrarquestao') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/estudos").'"><i class="fa fa-book" aria-hidden="true"></i> Estudos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus"></i> Cadastrar questão</a></li>';
-						} 
-						if (Route::current()->uri() === 'estudos/verquestao') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/estudos").'"><i class="fa fa-book" aria-hidden="true"></i> Estudos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver questão</a></li>';
-						} 
-						if (Route::current()->uri() === 'estudos/editarquestao') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/estudos").'"><i class="fa fa-book" aria-hidden="true"></i> Estudos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i> Editar questão</a></li>';
-						} 
-
-
-//DOUTRINAS ABAIXO
-
-						if (Route::current()->uri() === 'doutrinas') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Doutrinas</a></li>';
+						if (Route::current()->uri() === 'empregos/veraplicacao') {
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/empregos").'"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Empregos</a></li>';
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver aplicação</a></li>';
 						}
-						if (Route::current()->uri() === 'doutrinas/criar') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/doutrinas").'"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Doutrinas</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus"></i> Criar doutrina</a></li>';
-						} 
-						if (Route::current()->uri() === 'doutrinas/ver') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/doutrinas").'"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Doutrinas</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver doutrina</a></li>';
-						}
-						if (Route::current()->uri() === 'doutrinas/editar') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/doutrinas").'"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Doutrinas</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i> Editar doutrina</a></li>';
+						if (Route::current()->uri() === 'empregos/editaraplicacao') {
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/empregos").'"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Empregos</a></li>';
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i> Editar aplicação</a></li>';
 						} 
 
-//LINKS ABAIXO
-
-						if (Route::current()->uri() === 'links') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-external-link" aria-hidden="true"></i> Links</a></li>';
-						}
-						if (Route::current()->uri() === 'links/cadastrarlink') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/links").'"><i class="fa fa-external-link" aria-hidden="true"></i> Links</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus"></i> Cadastrar link</a></li>';
-						}
-						if (Route::current()->uri() === 'links/editarlink') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/links").'"><i class="fa fa-commenting-o" aria-hidden="true"></i> Links</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i></i> Editar teoria</a></li>';
-						} 
-
-
-
-//TEORIAS ABAIXO
-
-						if (Route::current()->uri() === 'teorias') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-commenting-o" aria-hidden="true"></i> Teorias</a></li>';
-						}
-						if (Route::current()->uri() === 'teorias/criar') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/teorias").'"><i class="fa fa-commenting-o" aria-hidden="true"></i> Teorias</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus"></i> Criar teoria</a></li>';
-						}
-						if (Route::current()->uri() === 'teorias/ver') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/teorias").'"><i class="fa fa-commenting-o" aria-hidden="true"></i> Teorias</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver teoria</a></li>';
-						} 
-						if (Route::current()->uri() === 'teorias/editar') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/teorias").'"><i class="fa fa-commenting-o" aria-hidden="true"></i> Teorias</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i></i> Editar teoria</a></li>';
-						} 
-						if (Route::current()->uri() === 'teorias/pesquisar') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href="'.url("/teorias").'"><i class="fa fa-commenting-o" aria-hidden="true"></i> Teorias</a></li>';
-						} 
-
-//PROJETOS ABAIXO
-
-						if (Route::current()->uri() === 'projetos') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-line-chart" aria-hidden="true"></i> Projetos</a></li>';
-						}
-						if (Route::current()->uri() === 'projetos/criar') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/projetos").'"><i class="fa fa-line-chart" aria-hidden="true"></i> Projetos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus"></i> Cadastrar projeto</a></li>';
-						}
-						if (Route::current()->uri() === 'projetos/ver') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/projetos").'"><i class="fa fa-line-chart" aria-hidden="true"></i> Projetos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver projeto</a></li>';
-						} 
-						if (Route::current()->uri() === 'projetos/editar') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/projetos").'"><i class="fa fa-line-chart" aria-hidden="true"></i> Projetos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i></i> Editar projeto</a></li>';
-						} 
-						if (Route::current()->uri() === 'projetos/pesquisar') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href="'.url("/projetos").'"><i class="fa fa-line-chart" aria-hidden="true"></i> Projetos</a></li>';
-						} 
-						if (Route::current()->uri() === 'projetos/criartarefa') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/projetos").'"><i class="fa fa-line-chart" aria-hidden="true"></i> Projetos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus"></i> Criar tarefa</a></li>';
-						}
-						if (Route::current()->uri() === 'projetos/vertarefa') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/projetos").'"><i class="fa fa-line-chart" aria-hidden="true"></i> Projetos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver tarefa</a></li>';
-						}
-						if (Route::current()->uri() === 'projetos/editartarefa') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/projetos").'"><i class="fa fa-line-chart" aria-hidden="true"></i> Projetos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i></i> Editar tarefa</a></li>';
-						}  
 
 						?>
 
@@ -356,6 +245,32 @@
 					<div class="card text-white bg-aeroblack" style="width: 100%; border-top-left-radius: 0px;">
 
 						<div class="card-body">
+
+							@if (Session::has('mensagemSucesso'))
+							<div class="alert alert-success bg-aeroblack" role="alert">
+								{{Session::get('mensagemSucesso')}}
+							</div><hr>
+							@endif
+
+							@if (Session::has('mensagemErro'))
+							<div class="alert alert-danger bg-aeroblack" role="alert">
+								{{Session::get('mensagemErro')}}
+							</div><hr>
+							@endif
+
+							@if(!empty($mensagemSucesso))
+							<div class="alert alert-success bg-aeroblack"> {{ $mensagemSucesso }}</div>
+							@endif
+
+							@if ($errors->any())
+							<div class="alert alert-danger">
+								<ul style="margin-bottom: 0px;">
+									@foreach ($errors->all() as $error)
+									<li>{{ $error }}</li>
+									@endforeach
+								</ul>
+							</div>
+							@endif
 
 							@yield('contentdashboard')
 
