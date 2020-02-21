@@ -31,9 +31,9 @@
 	<nav class="navbar navbar-expand-md navbar-dark bg-aeroblack mb-4 ">
 		<div class="container">
 
-			<img src="{{asset('public/images/assets/centrallogo.png')}}" width="60" height="60" style="float: left; margin-right: 10px;" class="d-inline-block align-top">
+			<a href="{{ route('welcome') }}"><img src="{{asset('public/images/assets/centrallogo.png')}}" width="60" height="60" style="float: left; margin-right: 10px;" class="d-inline-block align-top"></a>
 
-			<div class="site-branding-text"><h1 class="site-title h3 mb-0"><a href="https://rocketsciencebr.com/" rel="home" class="navbar-brand mb-0">Central de Inteligência Rocket Science Brasil</a></h1><span class="site-description">Comunidade brasileira de entusiastas em Astronomia e Astronáutica.</span></div>
+			<div class="site-branding-text"><h1 class="site-title h3 mb-0"><a href="{{ route('welcome') }}" rel="home" class="navbar-brand mb-0">Central de Inteligência Rocket Science Brasil</a></h1><span class="site-description">Comunidade brasileira de entusiastas em Astronomia e Astronáutica.</span></div>
 
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
@@ -43,7 +43,7 @@
 				<ul class="navbar-nav ml-auto">
 
 					<li class="nav-item ">
-						<a class="nav-link" href="https://rocketsciencebr.com/"><i class="fa fa-globe" aria-hidden="true"></i> Ver site</a>
+						<a class="nav-link" href="https://rocketsciencebr.com/"><i class="fa fa-globe" aria-hidden="true"></i> rocketsciencebr.com</a>
 					</li>
 
 					<!--
@@ -57,7 +57,7 @@
 				@auth
 
 				<li class="nav-item">
-					<a class="nav-link <?php if (Route::current()->uri() === 'inicio') { echo 'active'; } ?>" href="{{ route('inicio') }}"><i class="fa fa-home" aria-hidden="true"></i> Início</a>
+					<a class="nav-link <?php if (Route::current()->uri() != '/') { echo 'active'; } ?>" href="{{ route('inicio') }}"><i class="fa fa-columns" aria-hidden="true"></i> Painel</a>
 				</li>
 
 				@else
@@ -142,8 +142,13 @@
 
 							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if (Route::current()->uri() === 'logs') { echo 'active'; } ?>" href="{{ url('logs') }}"><i class="fa fa-file-text-o" aria-hidden="true"></i> Logs</a>
 
+							@if(Auth::check())
+							@if (Auth::user()->credencial === 10)
 							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ( (Route::current()->uri() === 'administrador') || (Route::current()->uri() === 'membros') || (Route::current()->uri() === 'membros/ver') || (Route::current()->uri() === 'membros/editar') ) { echo 'active'; } ?>" href="{{ url('administrador') }}"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a>
 
+							@endif
+							@endif
+							
 							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ( (Route::current()->uri() === 'perfil') || (Route::current()->uri() === 'perfil/editar') ) { echo 'active'; } ?>" href="{{ url('perfil') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Meu Perfil</a>
 
 							<a style="width: 100%;" class="nav-link text-white bg-aeroblack" href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>

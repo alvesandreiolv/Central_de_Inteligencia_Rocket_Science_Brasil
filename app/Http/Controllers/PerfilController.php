@@ -43,7 +43,6 @@ class PerfilController extends Controller
 			$validatedData = $dados->validate([
 
 				'name' => 'required',
-				'email' => 'required',
 				'password' => 'required|min:8',
 				'confirmpassword' => 'required|same:password'
 
@@ -54,7 +53,6 @@ class PerfilController extends Controller
 			$validatedData = $dados->validate([
 
 				'name' => 'required',
-				'email' => 'required',
 
 			]);
 
@@ -62,9 +60,13 @@ class PerfilController extends Controller
 
 		$dados = $dados->all();
 
-		DB::table('users')->where('id', $dados['id'])->update(
-			[ 'name' => $dados['name'], 'email' => $dados['email'], 'sobre' => $dados['sobre'], 'updated_at' => Carbon::now(),  ]
-		);
+		if (empty($dados['sobre'])) {
+			$dados['sobre'] = 'Entusiasta de Astronomia e Astronáutica.';
+		}
+
+			DB::table('users')->where('id', $dados['id'])->update(
+				[ 'name' => $dados['name'], 'sobre' => $dados['sobre'], 'updated_at' => Carbon::now(),  ]
+			);
 
 		if (!empty($dados['password'])) {
 

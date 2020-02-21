@@ -74,7 +74,7 @@
 
 			<div class="form-group">
 				<label for="sobre">Sobre:</label>
-				<textarea class="form-control bg-aeroblack" id="sobre" name="sobre" rows="5">{{$perfil->sobre}}</textarea>
+				<textarea class="form-control bg-aeroblack" id="sobre" minlength="15" name="sobre" rows="5" placeholder="Caso você deixe este campo vazio, colocaremos para você a descrição 'Entusiasta de Astronomia e Astronáutica'. ">{{$perfil->sobre}}</textarea>
 				<small>HTML é permitido, porém, por favor, não exagere. Textos com formatação simples quase sempre são melhores opções.</small>
 			</div>
 

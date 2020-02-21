@@ -6,11 +6,11 @@
 
     <div class="card bg-aeroblack" style="width: 100%; max-width: 400px;">
 
-        <a href="{{ route('welcome') }}"><img src="{{asset('public/images/assets/centrallogo.png')}}" width="180" height="180" style="margin-top: 10px;"></a>
+        <a href="{{ route('welcome') }}"><img src="{{asset('public/images/assets/centrallogo.png')}}" width="180" height="180" style="margin-top: 1.25rem;"></a>
 
-        <div class="card-header" style="padding-top: 5px;">Para acessar o painel, faça o login abaixo:</div>
+        <!--<div class="card-header" style="padding-top: 5px;">Para acessar o painel, faça o login abaixo:</div>-->
 
-        <div class="card-body ">
+        <div class="card-body " style="padding-top: 0.25rem;">
 
             <form method="POST" class="form-signin" action="{{ route('login') }}" style="padding-bottom: 0px;">
                 @csrf
