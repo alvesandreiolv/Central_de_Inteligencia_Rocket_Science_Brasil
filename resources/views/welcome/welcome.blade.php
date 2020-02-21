@@ -8,6 +8,8 @@
 </div>
 @endif
 
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <style type="text/css">
 
     #sidebarmaster {
@@ -70,42 +72,46 @@
                 <div class="form-group">
                     <label for="exampleInputPassword1">Repetir senha</label>
                     <input id="password-confirm" type="password" class="bg-aeroblack form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Repita a senha">
-                    <small id="emailHelp" class="form-text">Por segurança, utilize uma senha totalmente nova.</small>
+                    <small id="emailHelp" class="form-text">Por segurança, utilize uma senha inédita.</small>
                 </div>
+
                 <div class="form-group">
+                    <div class="g-recaptcha" data-sitekey="6LeAFdsUAAAAAMrBAGBpn2USlgEzw_oWP4xTVY_H"></div>
+              </div>
 
-                    <button type="submit" class="btn btn-primary bg-aeroblack">Realizar cadastro</button>
-                </div>
-            </form>
-        </div>
-
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary bg-aeroblack">Realizar cadastro</button>
+            </div>
+        </form>
     </div>
 
-    <!-- BLOCO VANTAGENS -->
+</div>
 
-    <hr>
+<!-- BLOCO VANTAGENS -->
 
-    <div class="container">
-      <div class="row">
-        <div class="col">
-            <center>
-                <h4>Não há pressão</h4>
-                Você poderá criar conteúdo apenas quando desejar. Sem cobranças e sem cronogramas. Quando quiser parar, apenas pare.
-            </center>
-        </div>
-        <div class="col">
-            <center>
-                <h4>Aprenda coisas novas</h4>
-                Descubra como é participar de um projeto na Internet junto com outros influenciadores e especialistas.
-            </center>
-        </div>
-        <div class="col">
-            <center>
-                <h4>Seja um influenciador</h4>
-                Já possui um público na Internet ou gostaria de ter? Você sempre será creditado ao máximo pelo seu trabalho. Nós te daremos uma voz.
-            </center>
-        </div>
+<hr>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+        <center>
+            <h4>Não há pressão</h4>
+            Você poderá criar conteúdo apenas quando desejar. Sem cobranças e sem cronogramas. Quando quiser parar, apenas pare.
+        </center>
     </div>
+    <div class="col">
+        <center>
+            <h4>Aprenda coisas novas</h4>
+            Descubra como é participar de um projeto na Internet junto com outros influenciadores e especialistas.
+        </center>
+    </div>
+    <div class="col">
+        <center>
+            <h4>Seja um influenciador</h4>
+            Já possui um público na Internet ou gostaria de ter? Você sempre será creditado ao máximo pelo seu trabalho. Nós te daremos uma voz.
+        </center>
+    </div>
+</div>
 </div>
 
 </div>

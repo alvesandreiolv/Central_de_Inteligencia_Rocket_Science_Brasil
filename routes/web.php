@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome/welcome');
-});
+})->name('welcome');;
 
 Auth::routes();
 
@@ -28,3 +28,5 @@ Route::post('/membros/editar', 'MembrosController@editarmembro')->name('editarme
 Route::get('/membros/bloquear', 'MembrosController@bloquearmembro')->name('bloquearmembro');
 
 Route::get('/perfil', 'PerfilController@index')->name('perfil');
+Route::get('/perfil/editar', 'PerfilController@editarperfilformulario')->name('editarperfilformulario');
+Route::post('/perfil/editar', 'PerfilController@editarperfil')->name('editarperfil');

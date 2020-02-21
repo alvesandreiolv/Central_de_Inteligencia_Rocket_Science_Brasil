@@ -8,6 +8,7 @@ use Validator;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Hash;
+use Illuminate\Support\Facades\Auth;
 
 class PerfilController extends Controller
 {
@@ -19,10 +20,60 @@ class PerfilController extends Controller
 
 	public function index()	{
 
-		$membros = DB::table('users')->paginate(50, ['*'], 'membros');
-		$infogerais['membroscadastrados'] = DB::table('users')->count();
+		$perfil = DB::table('users')->where('id', Auth::id())->get();
+		$perfil = $perfil[0];
 
-		return view('perfil/perfil', compact('membros'))->with('infogerais', $infogerais);
+		return view('perfil/perfil', compact('perfil'));
+
+	}
+
+	public function editarperfilformulario()	{
+
+		$perfil = DB::table('users')->where('id', Auth::id())->get();
+		$perfil = $perfil[0];
+
+		return view('perfil/editarperfil', compact('perfil'));
+
+	}
+
+	public function editarperfil(Request $dados)	{
+
+		if (!empty($dados['password'])) {
+
+			$validatedData = $dados->validate([
+
+				'name' => 'required',
+				'email' => 'required',
+				'password' => 'required|min:8',
+				'confirmpassword' => 'required|same:password'
+
+			]);
+
+		} else {
+
+			$validatedData = $dados->validate([
+
+				'name' => 'required',
+				'email' => 'required',
+
+			]);
+
+		}
+
+		$dados = $dados->all();
+
+		DB::table('users')->where('id', $dados['id'])->update(
+			[ 'name' => $dados['name'], 'email' => $dados['email'], 'sobre' => $dados['sobre'], 'updated_at' => Carbon::now(),  ]
+		);
+
+		if (!empty($dados['password'])) {
+
+			$dados['password'] = Hash::make($dados['password']);
+			DB::table('users')->where('id', $dados['id'])->update(	[ 'password' => $dados['password']  ]	);
+
+		}
+
+		return redirect()->route('perfil')->with('mensagemSucesso',  'As suas informações foram atualizadas com sucesso.');
 
 	}
 

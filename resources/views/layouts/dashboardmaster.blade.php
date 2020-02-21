@@ -43,7 +43,7 @@
 				<ul class="navbar-nav ml-auto">
 
 					<li class="nav-item ">
-						<a class="nav-link" href="https://rocketsciencebr.com/"><i class="fa fa-globe" aria-hidden="true"></i> Ver website</a>
+						<a class="nav-link" href="https://rocketsciencebr.com/"><i class="fa fa-globe" aria-hidden="true"></i> Ver site</a>
 					</li>
 
 					<!--
@@ -142,9 +142,9 @@
 
 							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if (Route::current()->uri() === 'logs') { echo 'active'; } ?>" href="{{ url('logs') }}"><i class="fa fa-file-text-o" aria-hidden="true"></i> Logs</a>
 
-							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ( (Route::current()->uri() === 'administrador') || (Route::current()->uri() === 'membros') || (Route::current()->uri() === 'membros/ver') ) { echo 'active'; } ?>" href="{{ url('administrador') }}"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a>
+							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ( (Route::current()->uri() === 'administrador') || (Route::current()->uri() === 'membros') || (Route::current()->uri() === 'membros/ver') || (Route::current()->uri() === 'membros/editar') ) { echo 'active'; } ?>" href="{{ url('administrador') }}"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a>
 
-							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if (Route::current()->uri() === 'perfil') { echo 'active'; } ?>" href="{{ url('perfil') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Meu Perfil</a>
+							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ( (Route::current()->uri() === 'perfil') || (Route::current()->uri() === 'perfil/editar') ) { echo 'active'; } ?>" href="{{ url('perfil') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Meu Perfil</a>
 
 							<a style="width: 100%;" class="nav-link text-white bg-aeroblack" href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>
 								{{ __('Logout') }}
@@ -179,22 +179,14 @@
 							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-home" aria-hidden="true"></i> Início</a></li>';
 						}
 
-//MODELO ABAIXO
+//PERFIL ABAIXO
 
-						if (Route::current()->uri() === 'empregos') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-suitcase" aria-hidden="true"></i> Empregos</a></li>';
+						if (Route::current()->uri() === 'perfil') {
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-user-circle-o" aria-hidden="true"></i> Meu Perfil</a></li>';
 						}
-						if (Route::current()->uri() === 'empregos/addaplicacao') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/empregos").'"><i class="fa fa-suitcase" aria-hidden="true"></i> Empregos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus"></i> Adicionar aplicação</a></li>';
-						} 
-						if (Route::current()->uri() === 'empregos/veraplicacao') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/empregos").'"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Empregos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver aplicação</a></li>';
-						}
-						if (Route::current()->uri() === 'empregos/editaraplicacao') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/empregos").'"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Empregos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i> Editar aplicação</a></li>';
+						if (Route::current()->uri() === 'perfil/editar') {
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack " href="'.url("/perfil").'"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Meu Perfil</a></li>';
+							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil" aria-hidden="true"></i> Editar perfil</a></li>';
 						} 
 
 //ADMINISTRADOR ABAIXO

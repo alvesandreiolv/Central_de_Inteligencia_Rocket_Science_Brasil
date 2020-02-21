@@ -41,7 +41,7 @@
 				<div class="form-row">
 					<div class="col">
 						<label for="password">Nova senha:</label>
-						<input type="password" name="password" required id="password" class="form-control bg-aeroblack" placeholder="" value="">
+						<input type="password" name="password" id="password" class="form-control bg-aeroblack" placeholder="" value="">
 					</div>
 					<div class="col">
 						<label for="credencial">Credencial:</label>
@@ -58,6 +58,12 @@
 						</select>
 					</div>	
 				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="sobre">Sobre:</label>
+				<textarea class="form-control bg-aeroblack" id="sobre" name="sobre" rows="5">{{$vermembro->sobre}}</textarea>
+				<small>HTML é permitido, porém, por favor, não exagere. Textos com formatação simples quase sempre são melhores opções.</small>
 			</div>
 
 			<hr>

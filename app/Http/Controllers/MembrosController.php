@@ -19,7 +19,7 @@ class MembrosController extends Controller
 
 	public function index()	{
 
-		$membros = DB::table('users')->paginate(50, ['*'], 'membros');
+		$membros = DB::table('users')->orderBy('credencial', 'asc')->orderBy('id', 'desc')->paginate(50, ['*'], 'membros');
 		$infogerais['membroscadastrados'] = DB::table('users')->count();
 
 		return view('administrador/membros', compact('membros'))->with('infogerais', $infogerais);
@@ -46,21 +46,39 @@ class MembrosController extends Controller
 
 	public function editarmembro(Request $dados)	{
 
-		$validatedData = $dados->validate([
+		if (!empty($dados['password'])) {
 
-			'name' => 'required',
-			'email' => 'required',
-			'credencial' => 'required',
+			$validatedData = $dados->validate([
 
-		]);
+				'name' => 'required',
+				'email' => 'required',
+				'credencial' => 'required',
+				'password' => 'required|min:8',
+
+			]);
+
+		} else {
+
+			$validatedData = $dados->validate([
+
+				'name' => 'required',
+				'email' => 'required',
+				'credencial' => 'required',
+
+			]);
+
+		}
 
 		$dados = $dados->all();
 
-		$dados['password'] = Hash::make($dados['password']);
-
 		DB::table('users')->where('id', $dados['id'])->update(
-			[ 'name' => $dados['name'], 'email' => $dados['email'], 'credencial' => $dados['credencial'], 'password' => $dados['password'], 'updated_at' => Carbon::now(),  ]
+			[ 'name' => $dados['name'], 'email' => $dados['email'], 'credencial' => $dados['credencial'], 'sobre' => $dados['sobre'], 'updated_at' => Carbon::now(),  ]
 		);
+
+		if (!empty($dados['password'])) {
+			$dados['password'] = Hash::make($dados['password']);
+			DB::table('users')->where('id', $dados['id'])->update(	[ 'password' => $dados['password']  ]	);
+		}
 
 		return redirect()->route('membros')->with('mensagemSucesso',  'As informações do membro "'.$dados['name'].'" foram atualizadas com sucesso.');
 

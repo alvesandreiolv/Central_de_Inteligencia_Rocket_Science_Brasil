@@ -24,12 +24,12 @@ use AuthenticatesUsers;
 
 //protected $redirectTo = RouteServiceProvider::HOME;
 
-protected $redirectTo = '/inicio';
+//protected $redirectTo = '';
 
 public function __construct()
 {
     $this->middleware('guest')->except('logout');
-
+    $this->redirectTo = route('inicio');
 }
 
 }

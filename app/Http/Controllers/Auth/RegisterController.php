@@ -14,12 +14,13 @@ class RegisterController extends Controller
     use RegistersUsers;
 
 
-    protected $redirectTo = RouteServiceProvider::HOME;
+//    protected $redirectTo = RouteServiceProvider::HOME;
 
 
     public function __construct()
     {
         $this->middleware('guest');
+        $this->redirectTo = route('inicio');
     }
 
     protected function validator(array $data)
@@ -28,6 +29,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'g-recaptcha-response' => 'required'
         ]);
     }
 

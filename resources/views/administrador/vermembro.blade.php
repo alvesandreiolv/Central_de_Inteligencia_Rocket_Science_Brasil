@@ -46,4 +46,8 @@ if($vermembro->credencial===0){
 <b>Cadastrado em:</b> <?php if (!empty($vermembro->created_at)){ echo date('d/m/y à\s H:i', strtotime($vermembro->created_at)); } ?><br>
 <b>Credencial:</b> {{$vermembro->credencial}}.<br>
 
+<hr>
+
+<b>Sobre:</b><br>{{$vermembro->sobre}}<br>
+
 @endsection

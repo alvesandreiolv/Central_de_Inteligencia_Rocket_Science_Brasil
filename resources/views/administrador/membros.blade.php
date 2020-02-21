@@ -40,6 +40,8 @@
 
 		<?php
 
+		$corlinha = '';
+
 		if($membros->credencial===0){
 			$membros->credencial='(0) Novato';
 		}else if($membros->credencial===1){
