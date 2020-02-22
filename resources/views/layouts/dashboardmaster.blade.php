@@ -109,24 +109,58 @@
 
 							<div class="card-body">
 
-								<img class="user__img" src="{{ asset('public/images/assets/squareexample1.png') }}" alt="" style="width: 3rem; height: 3rem; border-radius: 50%; margin-right: .8rem; float: left;">
+								<img src="{{ asset('public/images/assets/squareexample1.png') }}" width="50px" height="50px" style="margin-bottom:5px;    border-radius: 0.25rem;">
+								<br>
+								<small>
+									<?php
 
-								<div style="float: left; margin-top: .2rem;">
+									$credencialZ = 0;
 
-									<div style="font-weight: 600; font-size: .9rem;">
+									if (Auth::check()) {
 
-										<?php
-//$nfdashboard = Auth::user()->name; 
-//$nfdashboard = explode(' ', $nfdashboard, 3);
-// echo $nfdashboard[0].' '.$nfdashboard[1];
-										echo 'Ney';
-										?>
+										if (empty(Auth::user()->id)) { Auth::user()->id = '?'; }
+										if (empty(Auth::user()->name)) { Auth::user()->name = 'Indefinido'; }
+										if (empty(Auth::user()->email)) { Auth::user()->email = 'Email Indefinido'; }
 
-									</div>
+										$nomeZ = explode(' ',trim(Auth::user()->name));
 
-									<div style="font-size: .7rem;">neyelson@gmail.com</div>
+										if (!isset($nomeZ[1])) { $nomeZ[1] = ''; }
 
-								</div>
+										echo 'ID #'.Auth::user()->id.' '.$nomeZ[0].' '.$nomeZ[1];
+										echo '<br>';
+										echo Auth::user()->email;
+
+										$credencialZ = Auth::user()->credencial;
+
+										if($credencialZ===0){
+											$credencialZ='Novato';
+										}else if($credencialZ===1){
+											$credencialZ='Conhecido';
+										}else if($credencialZ===2){
+											$credencialZ='Confiável';
+										}else if($credencialZ===3){
+											$credencialZ='Muito Confiável';
+										} else if($credencialZ===8){
+											$credencialZ='Alienígena';
+										} else if($credencialZ===9){
+											$credencialZ='Moderador';
+										} else if($credencialZ===10){
+											$credencialZ=' Administrador <i class="fa fa-star" aria-hidden="true"></i>';
+										} else if($credencialZ===80){
+											$credencialZ='Bloqueado/Outros';
+										} else if($credencialZ===81){
+											$credencialZ='Bloqueado/Inatividade';
+										} else {
+											$credencialZ='Erro';
+										}
+
+										echo '<br> Membro'.$credencialZ;
+
+									}
+
+									?>
+
+								</small>
 
 							</div>
 
@@ -140,22 +174,22 @@
 
 							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if (Route::current()->uri() === 'inicio') { echo 'active'; } ?>" href="{{ url('inicio') }}"><i class="fa fa-home" aria-hidden="true"></i> Início</a>
 
+						<!--
 							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if (Route::current()->uri() === 'logs') { echo 'active'; } ?>" href="{{ url('logs') }}"><i class="fa fa-file-text-o" aria-hidden="true"></i> Logs</a>
+						-->
+						
+						@if(Auth::check())
+						@if (Auth::user()->credencial === 10)
+						<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ( (Route::current()->uri() === 'administrador') || (Route::current()->uri() === 'membros') || (Route::current()->uri() === 'membros/ver') || (Route::current()->uri() === 'membros/editar') ) { echo 'active'; } ?>" href="{{ url('administrador') }}"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a>
 
-							@if(Auth::check())
-							@if (Auth::user()->credencial === 10)
-							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ( (Route::current()->uri() === 'administrador') || (Route::current()->uri() === 'membros') || (Route::current()->uri() === 'membros/ver') || (Route::current()->uri() === 'membros/editar') ) { echo 'active'; } ?>" href="{{ url('administrador') }}"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a>
+						@endif
+						@endif
 
-							@endif
-							@endif
-							
-							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ( (Route::current()->uri() === 'perfil') || (Route::current()->uri() === 'perfil/editar') ) { echo 'active'; } ?>" href="{{ url('perfil') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Meu Perfil</a>
+						<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ( (Route::current()->uri() === 'perfil') || (Route::current()->uri() === 'perfil/editar') ) { echo 'active'; } ?>" href="{{ url('perfil') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Meu Perfil</a>
 
-							<a style="width: 100%;" class="nav-link text-white bg-aeroblack" href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>
-								{{ __('Logout') }}
-							</a>
-
-						</div>
+						<a style="width: 100%;" class="nav-link text-white bg-aeroblack" href="{{ route('logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>
+							{{ __('Logout') }}
+						</a>
 
 					</div>
 
@@ -165,119 +199,121 @@
 
 		</div>
 
-		<div id="conteudo" class="col-lg-9">
+	</div>
 
-			<div class="tab-content" id="v-pills-tabContent">
+	<div id="conteudo" class="col-lg-9">
 
-				<div class="tab-pane fade show active" role="tabpanel" aria-labelledby="v-pills-home-tab">
+		<div class="tab-content" id="v-pills-tabContent">
 
-					<ul class="nav nav-tabs ">
+			<div class="tab-pane fade show active" role="tabpanel" aria-labelledby="v-pills-home-tab">
 
-						<?php
+				<ul class="nav nav-tabs ">
+
+					<?php
 //GERAL DASHBOARD ABAIXO
 
-						if (Route::current()->uri() === '/') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-home" aria-hidden="true"></i> Faça parte</a></li>';
-						}
+					if (Route::current()->uri() === '/') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-home" aria-hidden="true"></i> Faça parte</a></li>';
+					}
 
-						if (Route::current()->uri() === 'inicio') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-home" aria-hidden="true"></i> Início</a></li>';
-						}
+					if (Route::current()->uri() === 'inicio') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-home" aria-hidden="true"></i> Início</a></li>';
+					}
 
 //PERFIL ABAIXO
 
-						if (Route::current()->uri() === 'perfil') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-user-circle-o" aria-hidden="true"></i> Meu Perfil</a></li>';
-						}
-						if (Route::current()->uri() === 'perfil/editar') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack " href="'.url("/perfil").'"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Meu Perfil</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil" aria-hidden="true"></i> Editar perfil</a></li>';
-						} 
+					if (Route::current()->uri() === 'perfil') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-user-circle-o" aria-hidden="true"></i> Meu Perfil</a></li>';
+					}
+					if (Route::current()->uri() === 'perfil/editar') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack " href="'.url("/perfil").'"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Meu Perfil</a></li>';
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil" aria-hidden="true"></i> Editar perfil</a></li>';
+					} 
 
 //ADMINISTRADOR ABAIXO
 
-						if (Route::current()->uri() === 'administrador') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-star" aria-hidden="true"></i> Administrador</a></li>';
-						}
-						if (Route::current()->uri() === 'membros') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-user-circle-o" aria-hidden="true"></i> Membros</a></li>';
-						} 
-						if (Route::current()->uri() === 'membros/ver') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye" aria-hidden="true"></i> Ver membro</a></li>';
-						} 
-						if (Route::current()->uri() === 'membros/editar') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil" aria-hidden="true"></i> Editar membro</a></li>';
-						} 
-						if (Route::current()->uri() === 'administrador/verconcurso') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-check-square-o" aria-hidden="true"></i> Administrador</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver concurso</a></li>';
-						} 
+					if (Route::current()->uri() === 'administrador') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-star" aria-hidden="true"></i> Administrador</a></li>';
+					}
+					if (Route::current()->uri() === 'membros') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a></li>';
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-user-circle-o" aria-hidden="true"></i> Membros</a></li>';
+					} 
+					if (Route::current()->uri() === 'membros/ver') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a></li>';
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye" aria-hidden="true"></i> Ver membro</a></li>';
+					} 
+					if (Route::current()->uri() === 'membros/editar') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a></li>';
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil" aria-hidden="true"></i> Editar membro</a></li>';
+					} 
+					if (Route::current()->uri() === 'administrador/verconcurso') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/administrador").'"><i class="fa fa-check-square-o" aria-hidden="true"></i> Administrador</a></li>';
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver concurso</a></li>';
+					} 
 
 //MODELO ABAIXO
 
-						if (Route::current()->uri() === 'empregos') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-suitcase" aria-hidden="true"></i> Empregos</a></li>';
-						}
-						if (Route::current()->uri() === 'empregos/addaplicacao') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/empregos").'"><i class="fa fa-suitcase" aria-hidden="true"></i> Empregos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus"></i> Adicionar aplicação</a></li>';
-						} 
-						if (Route::current()->uri() === 'empregos/veraplicacao') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/empregos").'"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Empregos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver aplicação</a></li>';
-						}
-						if (Route::current()->uri() === 'empregos/editaraplicacao') {
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/empregos").'"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Empregos</a></li>';
-							echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i> Editar aplicação</a></li>';
-						} 
+					if (Route::current()->uri() === 'empregos') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-suitcase" aria-hidden="true"></i> Empregos</a></li>';
+					}
+					if (Route::current()->uri() === 'empregos/addaplicacao') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/empregos").'"><i class="fa fa-suitcase" aria-hidden="true"></i> Empregos</a></li>';
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus"></i> Adicionar aplicação</a></li>';
+					} 
+					if (Route::current()->uri() === 'empregos/veraplicacao') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/empregos").'"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Empregos</a></li>';
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye"></i> Ver aplicação</a></li>';
+					}
+					if (Route::current()->uri() === 'empregos/editaraplicacao') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/empregos").'"><i class="fa fa-dot-circle-o" aria-hidden="true"></i> Empregos</a></li>';
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-pencil"></i> Editar aplicação</a></li>';
+					} 
 
 
-						?>
+					?>
 
-					</ul>
+				</ul>
 
-					<div class="card text-white bg-aeroblack" style="width: 100%; border-top-left-radius: 0px;">
+				<div class="card text-white bg-aeroblack" style="width: 100%; border-top-left-radius: 0px;">
 
-						<div class="card-body">
+					<div class="card-body">
 
-							@if (Session::has('mensagemSucesso'))
-							<div class="alert alert-success bg-aeroblack" role="alert">
-								{{Session::get('mensagemSucesso')}}
-							</div><hr>
-							@endif
+						@if (Session::has('mensagemSucesso'))
+						<div class="alert alert-success bg-aeroblack" role="alert">
+							{{Session::get('mensagemSucesso')}}
+						</div><hr>
+						@endif
 
-							@if (Session::has('mensagemErro'))
-							<div class="alert alert-danger bg-aeroblack" role="alert">
-								{{Session::get('mensagemErro')}}
-							</div><hr>
-							@endif
+						@if (Session::has('mensagemErro'))
+						<div class="alert alert-danger bg-aeroblack" role="alert">
+							{{Session::get('mensagemErro')}}
+						</div><hr>
+						@endif
 
-							@if(!empty($mensagemSucesso))
-							<div class="alert alert-success bg-aeroblack"> {{ $mensagemSucesso }}</div>
-							@endif
+						@if(!empty($mensagemSucesso))
+						<div class="alert alert-success bg-aeroblack"> {{ $mensagemSucesso }}</div>
+						@endif
 
-							@if ($errors->any())
-							<div class="alert alert-danger">
-								<ul style="margin-bottom: 0px;">
-									@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-									@endforeach
-								</ul>
-							</div>
-							@endif
-
-							@yield('contentdashboard')
-
+						@if ($errors->any())
+						<div class="alert alert-danger">
+							<ul style="margin-bottom: 0px;">
+								@foreach ($errors->all() as $error)
+								<li>{{ $error }}</li>
+								@endforeach
+							</ul>
 						</div>
+						@endif
+
+						@yield('contentdashboard')
 
 					</div>
 
 				</div>
 
 			</div>
+
+		</div>
 
 <!--
 <br>
