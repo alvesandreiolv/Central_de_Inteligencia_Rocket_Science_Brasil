@@ -18,7 +18,14 @@ class InicioController extends Controller
      */
     public function index()
     {
-       return view('inicio/inicio');
+     return view('inicio/inicio');
         // return ('ae');
-    }
+ }
+
+ public function boasvindas()
+ {
+     return view('inicio/boasvindas');
+        // return ('ae');
+ }
+ 
 }

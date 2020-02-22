@@ -6,6 +6,7 @@ Route::get('/', function () { return view('welcome/welcome'); })->name('welcome'
 Auth::routes();
 
 Route::get('/inicio', 'InicioController@index')->name('inicio');
+Route::get('/inicio/boasvindas', 'InicioController@boasvindas')->name('boasvindasinicio');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 Route::get('/perfil', 'PerfilController@index')->name('perfil');

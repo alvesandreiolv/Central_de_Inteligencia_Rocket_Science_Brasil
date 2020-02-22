@@ -145,7 +145,7 @@
 										} else if($credencialZ===9){
 											$credencialZ='Moderador';
 										} else if($credencialZ===10){
-											$credencialZ=' Administrador <i class="fa fa-star" aria-hidden="true"></i>';
+											$credencialZ='Administrador <i class="fa fa-star" aria-hidden="true"></i>';
 										} else if($credencialZ===80){
 											$credencialZ='Bloqueado/Outros';
 										} else if($credencialZ===81){
@@ -154,7 +154,7 @@
 											$credencialZ='Erro';
 										}
 
-										echo '<br> Membro'.$credencialZ;
+										echo '<br> Membro '.$credencialZ;
 
 									}
 
@@ -172,12 +172,12 @@
 
 						<div id="menulinks" class="nav nav-pills collapse">
 
-							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if (Route::current()->uri() === 'inicio') { echo 'active'; } ?>" href="{{ url('inicio') }}"><i class="fa fa-home" aria-hidden="true"></i> Início</a>
+							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ((Route::current()->uri() === 'inicio') || (Route::current()->uri() === 'inicio/boasvindas')) { echo 'active'; } ?>" href="{{ url('inicio') }}"><i class="fa fa-home" aria-hidden="true"></i> Início</a>
 
 						<!--
 							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if (Route::current()->uri() === 'logs') { echo 'active'; } ?>" href="{{ url('logs') }}"><i class="fa fa-file-text-o" aria-hidden="true"></i> Logs</a>
 						-->
-						
+
 						@if(Auth::check())
 						@if (Auth::user()->credencial === 10)
 						<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ( (Route::current()->uri() === 'administrador') || (Route::current()->uri() === 'membros') || (Route::current()->uri() === 'membros/ver') || (Route::current()->uri() === 'membros/editar') ) { echo 'active'; } ?>" href="{{ url('administrador') }}"><i class="fa fa-star" aria-hidden="true"></i> Administrador</a>
@@ -219,6 +219,13 @@
 					if (Route::current()->uri() === 'inicio') {
 						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-home" aria-hidden="true"></i> Início</a></li>';
 					}
+
+					if (Route::current()->uri() === 'inicio/boasvindas') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack" href="'.url("/inicio").'"><i class="fa fa-home" aria-hidden="true"></i> Início</a></li>';
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-hand-spock-o" aria-hidden="true"></i> Boas-vindas</a></li>';
+					}
+
+					
 
 //PERFIL ABAIXO
 

@@ -6,6 +6,8 @@
 
 <a type="submit" href="{{ url('perfil/editar') }}" class=" btn-sm btn-primary bg-aeroblack mr-1" style=" text-decoration: none;"><i class="fa fa-pencil"></i> Editar informações</a>
 
+<a type="submit" href="{{ url('inicio/boasvindas') }}" class=" btn-sm btn-secondary bg-aeroblack mr-1" style=" text-decoration: none;"><i class="fa fa-hand-spock-o" aria-hidden="true"></i> Ver página de boas-vindas</a>
+
 <!-- BLOCO INFORMAÇÕES DO MEMBRO -->
 
 <hr>
