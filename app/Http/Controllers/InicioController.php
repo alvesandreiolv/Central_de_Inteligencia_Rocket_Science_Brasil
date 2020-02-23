@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class InicioController extends Controller
 {
@@ -18,14 +19,15 @@ class InicioController extends Controller
      */
     public function index()
     {
-     return view('inicio/inicio');
-        // return ('ae');
+        //$teste = DB::connection('mysql2')->table("wp_rocketsciencebrusers")->max('id');
+        return view('inicio/inicio');
+      //  return view('inicio/inicio')->with('mensagemSucesso',  $teste);
+
+    }
+
+    public function boasvindas()
+    {
+     return view('inicio/boasvindas');
  }
 
- public function boasvindas()
- {
-     return view('inicio/boasvindas');
-        // return ('ae');
- }
- 
 }
