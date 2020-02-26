@@ -64,6 +64,8 @@ if (empty($perfil->twitter)) {
 
 ?>
 
+<a href="https://br.gravatar.com/"><img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $perfil->email ) ) )}}?s=200&d=mm&r=g " width="100" height="100" style=" margin-bottom: 20px; border-radius: 0.25rem;" class="d-inline-block align-top"></a>
+
 <h5>ID #{{$perfil->id}}.</h5>
 <b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Nome:</b> {{$perfil->name}}.<br>
 <b> E-mail:</b> {{$perfil->email}}<br><br>

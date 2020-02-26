@@ -69,6 +69,8 @@ if (empty($vermembro->twitter)) {
 
 ?>
 
+<a href="{{ route('welcome') }}"><img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $vermembro->email ) ) )}}?s=200&d=mm&r=g " width="100" height="100" style=" margin-bottom: 20px; border-radius: 0.25rem;" class="d-inline-block align-top"></a>
+
 <h5>ID #{{$vermembro->id}}.</h5>
 <b>Wordpress ID #{{$vermembro->rsbwordpressid}}.</b><br><br>
 <b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Nome:</b> {{$vermembro->name}}.<br>

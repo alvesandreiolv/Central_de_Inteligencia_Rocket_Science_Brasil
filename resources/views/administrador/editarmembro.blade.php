@@ -22,9 +22,23 @@
 
 			<input type="hidden" id="rsbwordpressid" name="rsbwordpressid" value="{{$vermembro->rsbwordpressid}}">
 
-			<small>Cuidado ao manipular as informações abaixo. Apenas administradores podem acessar este painel, portanto, mesmo que você insira informações equivocadas ou incompletas, o sistema não te impedirá de salvá-las.</small>
-			<br><br>
+			<small>Administrador, cuidado! Mesmo que insira informações erradas ou equivocadas, o sistema não te impedirá de salvá-las.</small>
+			<br>
 			<small>Os campos que possuem o <i class="text-warning fa fa-lock" aria-hidden="true"></i> cadeado, são informações privadas, portanto, não serão divulgadas em nossos canais.</small>
+			<hr>
+
+			<div class="form-row">
+				<div class="col">
+					<a href="https://br.gravatar.com/"><img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $vermembro->email ) ) )}}?s=200&d=mm&r=g " width="100" height="100" style="border-radius: 0.25rem; margin-right: 15px; float: left;" class="d-inline-block align-top"></a>
+
+					<!--<a target="blank" style="text-decoration: none;" class="text-warning" href="https://br.gravatar.com/">Mudar imagem no Gravatar</a><br>-->
+					Imagem de perfil:<br>
+					<i class="text-primary fa fa-globe" aria-hidden="true"></i>
+				</div>
+				<div class="col">
+					<small>Para trocar a  imagem de perfil, o membro precisa ter uma conta no site <a target="blank" class="text-warning" style="text-decoration: none;" href="https://br.gravatar.com/">Gravatar</a>. A conta no <a target="blank" class="text-warning" style="text-decoration: none;" href="https://br.gravatar.com/">Gravatar</a> precisa ter exatamente o mesmo e-mail que está cadastrado aqui.</small>
+				</div>
+			</div>
 
 			<hr>
 
@@ -37,6 +51,7 @@
 					<div class="col">
 						<label for="email"><i class="text-primary fa fa-globe" aria-hidden="true"></i> E-mail:</label>
 						<input type="email" name="email" required id="email" class="form-control bg-aeroblack" placeholder="" value="{{$vermembro->email}}">
+						<small>Mudar o e-mail de um membro pode quebrar a integridade do sistema e causar bugs. Prossiga apenas se você souber o que está fazendo!</small>
 					</div>
 				</div>
 			</div>

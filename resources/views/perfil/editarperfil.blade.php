@@ -39,10 +39,20 @@
 <div class="card bg-aeroblack mt-2">
 	<div class="card-body">
 
-		<small>Por questões de segurança, os membros não podem trocar seus e-mails cadastrados por conta própria. Caso você queira trocar, entre em contato com os administradores.</small>
-		<br><br>
+		<small>Por questão de integridade do sistema, os membros não podem trocar seus e-mails cadastrados por conta própria.</small>
+		<br>
 		<small>Os campos que possuem o <i class="text-warning fa fa-lock" aria-hidden="true"></i> cadeado, são informações privadas, portanto, não serão divulgadas em nossos canais.</small>
 
+		<hr>
+		
+		<div class="form-row">
+			<div class="col">
+				<a href="https://br.gravatar.com/"><img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( $perfil->email ) ) )}}?s=200&d=mm&r=g " width="100" height="100" style="border-radius: 0.25rem; margin-right: 15px; float: left;" class="d-inline-block align-top"></a> <a target="blank" style="text-decoration: none;" class="text-warning" href="https://br.gravatar.com/">Mudar imagem no Gravatar</a><br><i class="text-primary fa fa-globe" aria-hidden="true"></i>
+			</div>
+			<div class="col">
+				<small>Para trocar a sua imagem de perfil, você precisa ter uma conta no site <a target="blank" class="text-warning" style="text-decoration: none;" href="https://br.gravatar.com/">Gravatar</a>. A sua conta no <a target="blank" class="text-warning" style="text-decoration: none;" href="https://br.gravatar.com/">Gravatar</a> precisa ter exatamente o mesmo e-mail que está cadastrado aqui.</small>
+			</div>
+		</div>
 		<hr>
 
 		<form style="margin-block-end: 0px !important;" method="post" action="{{url('/perfil/editar')}}" enctype="multipart/form-data">

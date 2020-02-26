@@ -109,7 +109,14 @@
 
 							<div class="card-body">
 
-								<img src="{{ asset('public/images/assets/squareexample1.png') }}" width="50px" height="50px" style="margin-bottom:5px;    border-radius: 0.25rem;">
+								@if(Auth::check())
+								@if(!empty(Auth::user()->email))
+								<img src="https://www.gravatar.com/avatar/{{md5( strtolower( trim( Auth::user()->email ) ) )}}?s=200&d=mm&r=g " width="50px" height="50px" style="margin-bottom:5px;    border-radius: 0.25rem;">
+								@else
+								<img src="https://www.gravatar.com/avatar/aaaaaaaaa?s=200 " width="50px" height="50px" style="margin-bottom:5px;    border-radius: 0.25rem;">
+								@endif
+								@endif
+
 								<br>
 								<small>
 									<?php
@@ -324,7 +331,7 @@
 
 <!--
 <br>
-<span class="text-white"><center>{{ date('Y') }} - github.com/Neyelson</center></span>
+<span class="text-white"><center>{{ date('Y') }} - Problemas? rocketsciencebr@gmail.com </center></span>
 <br>
 -->
 

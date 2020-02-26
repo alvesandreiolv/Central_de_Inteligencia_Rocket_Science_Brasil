@@ -91,7 +91,7 @@ class MembrosController extends Controller
 
 			//abaixo atualiza as informações no banco de dados do wordpress
 			DB::connection('mysql2')->table('wp_rocketsciencebrusers')->where('id', $dados['rsbwordpressid'])->update(
-				[ 'user_login' => $primeironomeemminusculo, 'user_nicename' => $primeironomeemminusculo, 'user_url' => $dados['linkprojeto'], 'display_name' => $dados['nomeesobrenome'], ]
+				[ 'user_login' => $primeironomeemminusculo, 'user_nicename' => $primeironomeemminusculo, 'user_url' => $dados['linkprojeto'], 'user_email' => $dados['email'], 'display_name' => $dados['nomeesobrenome'], ]
 			);
 
 			//abaixo verifica quais METAs não existem para o usuário no banco de dados do wordpress, então registra
