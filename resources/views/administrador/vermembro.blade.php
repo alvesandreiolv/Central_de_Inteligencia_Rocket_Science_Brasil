@@ -38,16 +38,54 @@ if($vermembro->credencial===0){
 	$vermembro->credencial='Erro';
 }
 
+if (empty($vermembro->rsbwordpressid)) {
+	$vermembro->rsbwordpressid = 'Indefinido';
+}
+if (empty($vermembro->whatsapp)) {
+	$vermembro->whatsapp = 'Indefinido.';
+}
+if (empty($vermembro->linkprojeto)) {
+	$vermembro->linkprojeto = 'Indefinido.';
+}
+
+if (empty($vermembro->facebook)) {
+	$vermembro->facebook = 'Indefinido.';
+}
+if (empty($vermembro->youtube)) {
+	$vermembro->youtube = 'Indefinido.';
+}
+if (empty($vermembro->instagram)) {
+	$vermembro->instagram = 'Indefinido.';
+}
+if (empty($vermembro->github)) {
+	$vermembro->github = 'Indefinido.';
+}
+if (empty($vermembro->linkedin)) {
+	$vermembro->linkedin = 'Indefinido.';
+}
+if (empty($vermembro->twitter)) {
+	$vermembro->twitter = 'Indefinido.';
+}
+
 ?>
 
 <h5>ID #{{$vermembro->id}}.</h5>
-<b>Nome:</b> {{$vermembro->name}}.<br>
-<b>E-mail:</b> {{$vermembro->email}}<br>
+<b>Wordpress ID #{{$vermembro->rsbwordpressid}}.</b><br><br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Nome:</b> {{$vermembro->name}}.<br>
+<b> E-mail:</b> {{$vermembro->email}}<br><br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Link do projeto:</b> {{$vermembro->linkprojeto}}<br>
+<b><i class="text-warning fa fa-lock" aria-hidden="true"></i> Whatsapp:</b> {{$vermembro->whatsapp}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Linkedin:</b> {{$vermembro->linkedin}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Facebook:</b> {{$vermembro->facebook}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Instagram:</b> {{$vermembro->instagram}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Youtube:</b> {{$vermembro->youtube}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Twitter:</b> {{$vermembro->twitter}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> GitHub:</b> {{$vermembro->github}}<br><br>
 <b>Cadastrado em:</b> <?php if (!empty($vermembro->created_at)){ echo date('d/m/y à\s H:i', strtotime($vermembro->created_at)); } ?><br>
 <b>Credencial:</b> {{$vermembro->credencial}}.<br>
 
 <hr>
 
-<b>Sobre:</b><br>{{$vermembro->sobre}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Sobre:</b><br>{{$vermembro->sobre}}<br>
 
 @endsection

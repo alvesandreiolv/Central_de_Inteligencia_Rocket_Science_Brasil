@@ -36,16 +36,51 @@ if($perfil->credencial===0){
 	$perfil->credencial='Erro';
 }
 
+if (empty($perfil->whatsapp)) {
+	$perfil->whatsapp = 'Indefinido.';
+}
+if (empty($perfil->linkprojeto)) {
+	$perfil->linkprojeto = 'Indefinido.';
+}
+
+if (empty($perfil->facebook)) {
+	$perfil->facebook = 'Indefinido.';
+}
+if (empty($perfil->youtube)) {
+	$perfil->youtube = 'Indefinido.';
+}
+if (empty($perfil->instagram)) {
+	$perfil->instagram = 'Indefinido.';
+}
+if (empty($perfil->github)) {
+	$perfil->github = 'Indefinido.';
+}
+if (empty($perfil->linkedin)) {
+	$perfil->linkedin = 'Indefinido.';
+}
+if (empty($perfil->twitter)) {
+	$perfil->twitter = 'Indefinido.';
+}
+
 ?>
 
 <h5>ID #{{$perfil->id}}.</h5>
-<b>Nome:</b> {{$perfil->name}}.<br>
-<b>E-mail:</b> {{$perfil->email}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Nome:</b> {{$perfil->name}}.<br>
+<b> E-mail:</b> {{$perfil->email}}<br><br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Link do seu projeto:</b> {{$perfil->linkprojeto}}<br>
+<b><i class="text-warning fa fa-lock" aria-hidden="true"></i> Whatsapp:</b> {{$perfil->whatsapp}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Linkedin:</b> {{$perfil->linkedin}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Facebook:</b> {{$perfil->facebook}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Instagram:</b> {{$perfil->instagram}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Youtube:</b> {{$perfil->youtube}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Twitter:</b> {{$perfil->twitter}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> GitHub:</b> {{$perfil->github}}<br><br>
+
 <b>Cadastrado em:</b> <?php if (!empty($perfil->created_at)){ echo date('d/m/y à\s H:i', strtotime($perfil->created_at)); } ?><br>
 <b>Credencial:</b> {{$perfil->credencial}}.<br>
 
 <hr>
 
-<b>Sobre:</b><br>{{$perfil->sobre}}<br>
+<b><i class="text-primary fa fa-globe" aria-hidden="true"></i> Sobre:</b><br>{{$perfil->sobre}}<br>
 
 @endsection

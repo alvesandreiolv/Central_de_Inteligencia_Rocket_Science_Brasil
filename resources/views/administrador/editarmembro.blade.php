@@ -20,18 +20,22 @@
 
 			<input type="hidden" id="id" name="id" value="{{$vermembro->id}}">
 
+			<input type="hidden" id="rsbwordpressid" name="rsbwordpressid" value="{{$vermembro->rsbwordpressid}}">
+
 			<small>Cuidado ao manipular as informações abaixo. Apenas administradores podem acessar este painel, portanto, mesmo que você insira informações equivocadas ou incompletas, o sistema não te impedirá de salvá-las.</small>
+			<br><br>
+			<small>Os campos que possuem o <i class="text-warning fa fa-lock" aria-hidden="true"></i> cadeado, são informações privadas, portanto, não serão divulgadas em nossos canais.</small>
 
 			<hr>
 
 			<div class="form-group">
 				<div class="form-row">
 					<div class="col">
-						<label for="name">Nome:</label>
+						<label for="name"><i class="text-primary fa fa-globe" aria-hidden="true"></i> Nome:</label>
 						<input type="text" name="name" required id="name" class="form-control bg-aeroblack" placeholder="" value="{{$vermembro->name}}">
 					</div>
 					<div class="col">
-						<label for="email">E-mail:</label>
+						<label for="email"><i class="text-primary fa fa-globe" aria-hidden="true"></i> E-mail:</label>
 						<input type="email" name="email" required id="email" class="form-control bg-aeroblack" placeholder="" value="{{$vermembro->email}}">
 					</div>
 				</div>
@@ -40,7 +44,59 @@
 			<div class="form-group">
 				<div class="form-row">
 					<div class="col">
-						<label for="password">Nova senha:</label>
+						<label for="linkprojeto"><i class="text-primary fa fa-globe" aria-hidden="true"></i> Link do projeto:</label>
+						<input type="url" name="linkprojeto" id="linkprojeto" class="form-control bg-aeroblack" placeholder="" value="{{$vermembro->linkprojeto}}">
+					</div>
+					<div class="col">
+						<label for="whatsapp"><i class="text-warning fa fa-lock" aria-hidden="true"></i> Whatsapp:</label>
+						<input type="number" name="whatsapp" id="whatsapp" class="form-control bg-aeroblack" placeholder="" value="{{$vermembro->whatsapp}}">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="form-row">
+					<div class="col">
+						<label for="linkedin"><i class="text-primary fa fa-globe" aria-hidden="true"></i> Linkedin:</label>
+						<input type="url" name="linkedin" id="linkedin" class="form-control bg-aeroblack" placeholder="" value="{{$vermembro->linkedin}}">
+					</div>
+					<div class="col">
+						<label for="facebook"><i class="text-primary fa fa-globe" aria-hidden="true"></i> Facebook:</label>
+						<input type="url" name="facebook" id="facebook" class="form-control bg-aeroblack" placeholder="" value="{{$vermembro->facebook}}">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="form-row">
+					<div class="col">
+						<label for="instagram"><i class="text-primary fa fa-globe" aria-hidden="true"></i> Instagram:</label>
+						<input type="url" name="instagram" id="instagram" class="form-control bg-aeroblack" placeholder="" value="{{$vermembro->instagram}}">
+					</div>
+					<div class="col">
+						<label for="youtube"><i class="text-primary fa fa-globe" aria-hidden="true"></i> Youtube:</label>
+						<input type="url" name="youtube" id="youtube" class="form-control bg-aeroblack" placeholder="" value="{{$vermembro->youtube}}">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="form-row">
+					<div class="col">
+						<label for="twitter"><i class="text-primary fa fa-globe" aria-hidden="true"></i> Twitter:</label>
+						<input type="url" name="twitter" id="twitter" class="form-control bg-aeroblack" placeholder="" value="{{$vermembro->twitter}}">
+					</div>
+					<div class="col">
+						<label for="github"><i class="text-primary fa fa-globe" aria-hidden="true"></i> GitHub:</label>
+						<input type="url" name="github" id="github" class="form-control bg-aeroblack" placeholder="" value="{{$vermembro->github}}">
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="form-row">
+					<div class="col">
+						<label for="password"><i class="text-warning fa fa-lock" aria-hidden="true"></i> Nova senha:</label>
 						<input type="password" name="password" id="password" class="form-control bg-aeroblack" placeholder="" value="">
 					</div>
 					<div class="col">
@@ -61,7 +117,7 @@
 			</div>
 
 			<div class="form-group">
-				<label for="sobre">Sobre:</label>
+				<label for="sobre"><i class="text-primary fa fa-globe" aria-hidden="true"></i> Sobre:</label>
 				<textarea class="form-control bg-aeroblack" id="sobre" name="sobre" rows="5">{{$vermembro->sobre}}</textarea>
 				<small>HTML é permitido, porém, por favor, não exagere. Textos com formatação simples quase sempre são melhores opções.</small>
 			</div>

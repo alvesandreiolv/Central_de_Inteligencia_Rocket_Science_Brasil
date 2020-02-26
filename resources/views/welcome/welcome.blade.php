@@ -42,8 +42,8 @@
             <form method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="form-group">
-                    <label for="formGroupExampleInput">Nome completo</label>
-                    <input id="name" type="text" class="bg-aeroblack form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Insira o seu nome completo">
+                    <label for="formGroupExampleInput"><i class="text-primary fa fa-globe" aria-hidden="true"></i> Nome:</label>
+                    <input id="name" type="text" class="bg-aeroblack form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Insira o seu nome">
                     @error('name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -51,7 +51,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email</label>
+                    <label for="exampleInputEmail1"><i class="text-primary fa fa-envelope" aria-hidden="true"></i> Email:</label>
                     <input id="email" type="email" class="bg-aeroblack form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Insira o seu e-mail">
                     @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -61,7 +61,7 @@
                     <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Senha</label>
+                    <label for="exampleInputPassword1"><i class="text-warning fa fa-lock" aria-hidden="true"></i> Senha:</label>
                     <input id="password" type="password" class="bg-aeroblack form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Insira uma senha">
                     @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -70,7 +70,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Repetir senha</label>
+                    <label for="exampleInputPassword1"><i class="text-warning fa fa-lock" aria-hidden="true"></i> Repetir senha:</label>
                     <input id="password-confirm" type="password" class="bg-aeroblack form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Repita a senha">
                     <small id="emailHelp" class="form-text">Por segurança, utilize uma senha inédita.</small>
                 </div>

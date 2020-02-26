@@ -4,8 +4,6 @@
 
 <!-- BLOCO SLIDE BOAS VINDAS -->
 
-
-
 <title>W3.CSS</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -13,9 +11,6 @@
 <style>
 .mySlides {display:none}
 </style>
-
-
-
 
 <div class="w3-content" style="max-width:800px">
   <img class="mySlides" src="https://www.w3schools.com/w3css/img_nature_wide.jpg" style="width:100%">
@@ -62,8 +57,5 @@ function showDivs(n) {
   dots[slideIndex-1].className += " w3-red";
 }
 </script>
-
-
-
 
 @endsection
