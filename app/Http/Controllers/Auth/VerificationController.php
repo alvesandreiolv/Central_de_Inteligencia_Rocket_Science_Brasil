@@ -9,12 +9,12 @@ use Illuminate\Foundation\Auth\VerifiesEmails;
 class VerificationController extends Controller
 {
 
-    /*
+    
 
     use VerifiesEmails;
 
-    protected $redirectTo = RouteServiceProvider::HOME;
-
+    //protected $redirectTo = RouteServiceProvider::HOME;
+	//$this->redirectTo = route('inicio');
 
     public function __construct()
     {
@@ -23,6 +23,6 @@ class VerificationController extends Controller
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
 
- */
+ 
 
 }

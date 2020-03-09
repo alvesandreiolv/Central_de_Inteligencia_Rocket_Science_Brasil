@@ -5,6 +5,8 @@ Route::get('/', function () { return view('welcome/welcome'); })->name('welcome'
 
 Auth::routes();
 
+//Route::get('/a', 'InicioController@index')->name('home');
+
 Route::get('/inicio', 'InicioController@index')->name('inicio');
 Route::get('/inicio/boasvindas', 'InicioController@boasvindas')->name('boasvindasinicio');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
@@ -12,6 +14,12 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 Route::get('/perfil', 'PerfilController@index')->name('perfil');
 Route::get('/perfil/editar', 'PerfilController@editarperfilformulario')->name('editarperfilformulario');
 Route::post('/perfil/editar', 'PerfilController@editarperfil')->name('editarperfil');
+
+Route::get('/posts', 'PostsController@index')->name('posts');
+//Route::get('/todososposts', 'PostsController@vertodososposts')->name('vertodososposts');
+Route::get('/verpost', 'PostsController@verpost')->name('verpost');
+Route::get('/criarpost', 'PostsController@criarpost')->name('criarpost');
+Route::get('/editarpost', 'PostsController@editarpost')->name('editarpost');
 
 //O GRUPO ABAIXO RESTRINGE O ACESSO PARA TODOS QUE NÃO FOREM ADMINISTRADORES
 Route::group(['middleware' => 'App\Http\Middleware\ChecarAdministrador'], function()
