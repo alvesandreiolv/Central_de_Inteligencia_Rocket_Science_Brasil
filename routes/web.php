@@ -17,9 +17,10 @@ Route::post('/perfil/editar', 'PerfilController@editarperfil')->name('editarperf
 
 Route::get('/posts', 'PostsController@index')->name('posts');
 //Route::get('/todososposts', 'PostsController@vertodososposts')->name('vertodososposts');
-Route::get('/verpost', 'PostsController@verpost')->name('verpost');
-Route::get('/criarpost', 'PostsController@criarpost')->name('criarpost');
-Route::get('/editarpost', 'PostsController@editarpost')->name('editarpost');
+Route::get('/posts/verpost', 'PostsController@verpost')->name('verpost');
+Route::post('/posts/criarpost', 'PostsController@criarpost')->name('criarpost');
+Route::get('/posts/criarpost', 'PostsController@criarpostformulario')->name('criarpostformulario');
+Route::get('/posts/editarpost', 'PostsController@editarpost')->name('editarpost');
 
 //O GRUPO ABAIXO RESTRINGE O ACESSO PARA TODOS QUE NÃO FOREM ADMINISTRADORES
 Route::group(['middleware' => 'App\Http\Middleware\ChecarAdministrador'], function()

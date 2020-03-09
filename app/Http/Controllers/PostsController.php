@@ -65,4 +65,31 @@ class PostsController extends Controller
 
 	}
 
+	public function verpost() {
+
+		$verpost = DB::connection('mysql2')->table('wp_rocketsciencebrposts')->where('id', $_GET["id"])->get();
+		$verpost = $verpost[0];
+		
+		if ($verpost->post_status === 'publish') {
+			$verpost->post_status = 'Publicado';
+		} else if ($verpost->post_status === 'private') {
+			$verpost->post_status = 'Em análise';
+		} else if ($verpost->post_status === 'draft') {
+			$verpost->post_status = 'Rascunho';
+		}
+
+		$verpost->post_author = DB::connection('mysql')->table('users')->select('name')->where('rsbwordpressid', $verpost->post_author)->value('name');
+
+		return view('posts/verpost', compact('verpost'));
+
+	}
+
+	public function criarpostformulario() {
+
+		return view('posts/criarpost');
+
+	}
+
+	
+
 }

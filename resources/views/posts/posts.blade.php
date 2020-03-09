@@ -94,8 +94,8 @@
 		</tr>
 	</thead>
 
-	<button type="button" class="btn-sm btn-outline-light mb-3" disabled><i class="fa fa-suitcase" aria-hidden="true"></i> Meus posts:</button>
-	<a type="button" href="links/cadastrarlink" class=" btn-primary btn-sm bg-aeroblack ml-1" style="text-decoration: none;"><i class="fa fa-plus"></i> Criar post</a>
+	<button type="button" class="btn-sm btn-outline-light mb-3" disabled><i class="fa fa-suitcase" aria-hidden="true"></i> Todos os posts:</button>
+	<a type="button" href="posts/criarpost" class=" btn-primary btn-sm bg-aeroblack ml-1" style="text-decoration: none;"><i class="fa fa-plus"></i> Criar post</a>
 
 	<tbody>
 
@@ -105,11 +105,11 @@
 
 		<tr class="personaltableaeroblack1 clicaveltabela">
 
-			<td ><a href="{{$posts->ID}}" target="blank"><b>#{{$posts->ID}}</b></a ></td>
-			<td ><a href="{{$posts->ID}}" target="blank">{{$posts->post_title}}</a></td>
-			<td ><a href="{{$posts->ID}}" target="blank">{{$posts->post_status}}</a></td>
-			<td ><a href="{{$posts->ID}}" target="blank">{{$posts->post_author}}</a></td>
-			<td ><a href="{{$posts->ID}}" target="blank"><?php if (!empty($posts->post_date)){ echo date('d/m/y à\s H:i', strtotime($posts->post_date)); } ?></a></td>
+			<td ><a href="{{ url('posts/verpost?id='.$posts->ID ) }}"><b>#{{$posts->ID}}</b></a ></td>
+			<td ><a href="{{ url('posts/verpost?id='.$posts->ID ) }}">{{$posts->post_title}}</a></td>
+			<td ><a href="{{ url('posts/verpost?id='.$posts->ID ) }}">{{$posts->post_status}}</a></td>
+			<td ><a href="{{ url('posts/verpost?id='.$posts->ID ) }}">{{$posts->post_author}}</a></td>
+			<td ><a href="{{ url('posts/verpost?id='.$posts->ID ) }}"><?php if (!empty($posts->post_date)){ echo date('d/m/y à\s H:i', strtotime($posts->post_date)); } ?></a></td>
 			<td >
 				<a href="{{ url('links/editarlink?id='.$posts->ID) }}" class="btn btn-primary btn-sm bg-aeroblack"><i aria-hidden="true" class="fa fa-pencil"></i></a>
 				<a href="{{ url('links/deletarlink?id='.$posts->ID) }}" onclick="return confirm('Deseja deletar a doutrina &quot;pppppppppppppppppppppppp&quot;?');" class="btn btn-danger btn-sm bg-aeroblack"><i aria-hidden="true" class="fa fa-trash"></i></a>
