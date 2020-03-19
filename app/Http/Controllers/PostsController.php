@@ -47,7 +47,9 @@ class PostsController extends Controller
 
 		// $value->post_author = DB::connection('mysql')->table('users')->select('name')->where('rsbwordpressid', $value->post_author)->value('name');
 			
+			if (isset($users[$value->post_author])) {
 			$value->post_author = $users[$value->post_author];
+			}
 
 			if ($value->post_status === 'publish') {
 				$value->post_status = 'Publicado';
@@ -79,6 +81,10 @@ class PostsController extends Controller
 		}
 
 		$verpost->post_author = DB::connection('mysql')->table('users')->select('name')->where('rsbwordpressid', $verpost->post_author)->value('name');
+
+		$verpost->cover_link = DB::connection('mysql2')->table('wp_rocketsciencebrpostmeta')->select('meta_value')->where('post_id', $verpost->ID)->where('meta_key', '_thumbnail_id')->value('meta_value');
+
+		$verpost->cover_link = DB::connection('mysql2')->table('wp_rocketsciencebrpostmeta')->select('meta_value')->where('post_id', $verpost->cover_link)->where('meta_key', '_wp_attached_file')->value('meta_value');
 
 		return view('posts/verpost', compact('verpost'));
 

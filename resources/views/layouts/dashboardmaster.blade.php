@@ -185,7 +185,7 @@
 							<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if (Route::current()->uri() === 'logs') { echo 'active'; } ?>" href="{{ url('logs') }}"><i class="fa fa-file-text-o" aria-hidden="true"></i> Logs</a>
 						-->
 
-						<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ( (Route::current()->uri() === 'posts') || (Route::current()->uri() === 'posts/verpost') ) { echo 'active'; } ?>" href="{{ url('posts') }}"><i class="fa fa-clipboard" aria-hidden="true"></i> Posts</a>
+						<a style="width: 100%;" class="nav-link text-white bg-aeroblack <?php if ( (Route::current()->uri() === 'posts') || (Route::current()->uri() === 'posts/verpost') || (Route::current()->uri() === 'posts/criarpost') ) { echo 'active'; } ?>" href="{{ url('posts') }}"><i class="fa fa-clipboard" aria-hidden="true"></i> Posts</a>
 
 						@if(Auth::check())
 						@if (Auth::user()->credencial === 10)
@@ -244,6 +244,11 @@
 					if (Route::current()->uri() === 'posts/verpost') {
 						echo '<li class="nav-item"><a class="nav-link bg-aeroblack " href="'.url("/posts").'"><i class="fa fa-clipboard" aria-hidden="true"></i> Todos os Posts</a></li>';
 						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-eye" aria-hidden="true"></i> Ver Post</a></li>';
+					} 
+
+					if (Route::current()->uri() === 'posts/criarpost') {
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack " href="'.url("/posts").'"><i class="fa fa-clipboard" aria-hidden="true"></i> Todos os Posts</a></li>';
+						echo '<li class="nav-item"><a class="nav-link bg-aeroblack active" href=""><i class="fa fa-plus" aria-hidden="true"></i> Criar Post</a></li>';
 					} 
 
 

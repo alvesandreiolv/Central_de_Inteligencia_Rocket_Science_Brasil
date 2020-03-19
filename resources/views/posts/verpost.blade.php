@@ -36,6 +36,9 @@
 
 <!-- BLOCO CORPO TEXTO ABAIXO -->
 
+<img src="https://rocketsciencebr.com/wp-content/uploads/{{$verpost->cover_link}}" style="width: 100%; margin-bottom: 15px; border-radius: 0.25rem;">
+
+
 <?php
 echo $verpost->post_content;
 ?>
